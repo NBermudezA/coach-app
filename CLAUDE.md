@@ -149,26 +149,21 @@ See "Decisiones pendientes" in `docs/todos.md`.
 
 ## 11. Working agreements (for Claude)
 
-- **Always ask before**: `terraform apply`, `terraform destroy`, `sst deploy`, `sst remove`,
-  any command that creates, modifies or deletes AWS resources, and any `git push`.
-  Show the `terraform plan` / diff first and wait for explicit approval.
+Global rules (ask before push/deploy/infra changes, git branching, Conventional Commits, languages, no secrets in git) live in `~/.claude/CLAUDE.md`. Project-specific additions:
+
+- "Ask before" also covers `terraform apply/destroy` and `sst deploy/remove`: show the `terraform plan` / diff first.
 - Use AWS profile `coach` and region `us-east-1`. Never use root credentials.
-- Never write secrets to files tracked by git. Secrets go to SSM or `sst secret set`.
-- Work in small steps: one checkbox in `docs/todos.md` at a time, commit after each
-  (Conventional Commits), and update the checkboxes when done.
-- Prefer the decisions in this file. If something here seems wrong, raise it
-  before changing it — don't silently switch tools or patterns.
+- Secrets go to SSM or `sst secret set`.
+- Work one checkbox of `docs/todos.md` at a time, commit after each, and update the checkboxes when done.
+- Prefer the decisions in this file. If something here seems wrong, raise it before changing it; don't silently switch tools or patterns.
 - Explain new concepts briefly (Terraform, SST, Hono, Expo are new to the owner).
 
 ---
 
-## 12. Git & docs workflow
+## 12. Docs workflow
 
-- Branches: `dev` is the default/integration branch, `prod` is production. **`main` is not used.**
-- Each task gets its own branch (`feat/…`, `fix/…`, `docs/…`, `chore/…`) → PR to `dev` → when stable, PR `dev` → `prod`.
-- Language: docs (`docs/`, `README.md`) in **Spanish**; code, comments and commit messages in **English**. Chat with the owner in Spanish.
-- Every PR keeps docs current:
-  - `docs/todos.md` — mark done tasks, add new ones.
-  - `docs/ideas.md` — log any new idea that comes up (owner's or Claude's), always.
-  - `README.md` — update when setup, commands, structure or status change.
-  - `docs/architecture.md` — update when an architectural decision changes (add a row to its decision log).
+Every PR keeps docs current:
+- `docs/todos.md`: mark done tasks, add new ones.
+- `docs/ideas.md`: log any new idea that comes up (owner's or Claude's), always.
+- `README.md`: update when setup, commands, structure or status change.
+- `docs/architecture.md`: update when an architectural decision changes (add a row to its decision log).
